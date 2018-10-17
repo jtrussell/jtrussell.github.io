@@ -1,6 +1,8 @@
 
 :root {
   --color-accent: #5252c3;
+  --color-text: #444;
+  --width-slim: 40rem;
 }
 
 body {
@@ -18,11 +20,29 @@ body {
   display: none;
 }
 
-/* Level 1 */
+/* For small displays, let's not play games */
+
+@media (max-width: 1200px) {
+  body {
+    max-width: var(--width-slim);
+    color: var(--color-text);
+  }
+
+  a {
+    display: inline-block;
+    color: var(--color-accent);
+  }
+
+  .lt-l1 {
+    display: none;
+  }
+}
+
+/* Level 1, Enter the dungeon! */
 
 .level1 {
-  max-width: 40rem;
-  color: #444;
+  max-width: var(--width-slim);
+  color: var(--color-text);
 }
 
 .level1 a {
