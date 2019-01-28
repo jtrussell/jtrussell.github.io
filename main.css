@@ -81,3 +81,24 @@ body {
 .level1 .gt-l0 {
   display: unset;
 }
+
+/* Level 2: Aamaze! */
+.level2 {
+  overflow: hidden;
+}
+
+.level2 .lt-l2 {
+  display: none;
+}
+
+#root {
+  opacity: 0.0;
+  -webkit-transition: opacity 5.0s ease;
+  -moz-transition: opacity 5.0s ease;
+  -ms-transition: opacity 5.0s ease;
+  transition: opacity 5.0s ease;
+}
+
+.level2 #root {
+  opacity: 1.0;
+}
