@@ -174,6 +174,23 @@ function move (direction) {
   if (neighbors.includes(nextLoc)) {
     theLoc = nextLoc
     render(theEl, theMaze, theLoc)
+    dispatchEvents(theMaze, theLoc)
+  }
+}
+
+function dispatchEvents (theMaze, theLoc) {
+  if (theMaze[theLoc] === CELL_PORTAL) {
+    console.log('Found a portal!')
+  }
+
+  if (theMaze[theLoc] === CELL_GOAL) {
+    document.body.dispatchEvent(
+      new CustomEvent('mazeEvent', {
+        detail: {
+          type: 'foundGoal'
+        }
+      })
+    )
   }
 }
 
@@ -203,8 +220,6 @@ function getNeighbors (maze, loc) {
   return neighbors
 }
 
-document.body.addEventListener('keyup', amazeKeyUpHandler)
-
 function amazeKeyUpHandler (event) {
   const key = event.key
   if (key === 'ArrowUp' || key === 'w') {
@@ -221,9 +236,19 @@ function amazeKeyUpHandler (event) {
   }
 }
 
-const initialState = amaze()
-theMaze = initialState[0]
-theLoc = initialState[1]
+function mazeUp () {
+  document.body.addEventListener('keyup', amazeKeyUpHandler)
 
-init(theEl, theMaze)
-render(theEl, theMaze, theLoc)
+  const initialState = amaze()
+  theMaze = initialState[0]
+  theLoc = initialState[1]
+
+  init(theEl, theMaze)
+  render(theEl, theMaze, theLoc)
+}
+
+function mazeDown () {
+  document.body.removeEventListener('keyup', amazeKeyUpHandler)
+}
+
+mazeUp()
