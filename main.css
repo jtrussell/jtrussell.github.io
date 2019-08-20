@@ -1,7 +1,7 @@
 
 :root {
   --color-accent: #5252c3;
-  --color-text: #444;
+  --color-text: #323232;
   --width-slim: 40rem;
 }
 
@@ -16,10 +16,6 @@ body {
   padding: 0 1rem;
 }
 
-.gt-l0 {
-  display: none;
-}
-
 /* For small displays, let's not play games */
 
 @media (max-width: 1200px) {
@@ -31,10 +27,6 @@ body {
   a {
     display: inline-block;
     color: var(--color-accent);
-  }
-
-  .lt-l1 {
-    display: none;
   }
 }
 
@@ -72,12 +64,4 @@ body {
 .level1 a:hover:after,
 .level1 a:focus:after {
   width: 100%;
-}
-
-.level1 .lt-l1 {
-  display: none;
-}
-
-.level1 .gt-l0 {
-  display: unset;
 }

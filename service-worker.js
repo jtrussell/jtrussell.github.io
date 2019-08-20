@@ -1,19 +1,14 @@
-
-const PRECACHE = 'precache-v1'
+const PRECACHE = 'precache-v2'
 const RUNTIME = 'runtime'
 
 // A list of local resources we always want to be cached.
-const PRECACHE_URLS = [
-  'index.html',
-  './',
-  'main.css',
-  'main.js'
-]
+const PRECACHE_URLS = ['index.html', './', 'main.css']
 
 // Precache the things we know we'll need.
 self.addEventListener('install', event => {
   event.waitUntil(
-    caches.open(PRECACHE)
+    caches
+      .open(PRECACHE)
       .then(cache => cache.addAll(PRECACHE_URLS))
       .then(self.skipWaiting())
   )
@@ -23,14 +18,19 @@ self.addEventListener('install', event => {
 self.addEventListener('activate', event => {
   const currentCaches = [PRECACHE, RUNTIME]
   event.waitUntil(
-    caches.keys()
+    caches
+      .keys()
       .then(cacheNames => {
-        return cacheNames.filter(cacheName => !currentCaches.includes(cacheName))
+        return cacheNames.filter(
+          cacheName => !currentCaches.includes(cacheName)
+        )
       })
       .then(cachesToDelete => {
-        return Promise.all(cachesToDelete.map(cacheToDelete => {
-          return caches.delete(cacheToDelete)
-        }))
+        return Promise.all(
+          cachesToDelete.map(cacheToDelete => {
+            return caches.delete(cacheToDelete)
+          })
+        )
       })
       .then(() => self.clients.claim())
   )
