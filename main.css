@@ -22,6 +22,7 @@ body {
   body {
     max-width: var(--width-slim);
     color: var(--color-text);
+    font-family: "Helvetica";
   }
 
   a {
