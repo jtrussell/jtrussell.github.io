@@ -9,6 +9,7 @@ body {
   margin: 0 auto;
   max-width: 100%;
   color: #000;
+  font-family: "Helvetica";
   -webkit-transition: max-width 0.7s ease;
   -moz-transition: max-width 0.7s ease;
   -ms-transition: max-width 0.7s ease;
@@ -22,7 +23,6 @@ body {
   body {
     max-width: var(--width-slim);
     color: var(--color-text);
-    font-family: "Helvetica";
   }
 
   a {
