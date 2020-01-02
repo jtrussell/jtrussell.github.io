@@ -1,4 +1,4 @@
-const PRECACHE = 'precache-v4'
+const PRECACHE = 'precache'
 const RUNTIME = 'runtime'
 
 const assets = 'assets-v4'
