@@ -1,3 +1,5 @@
+// Lightstint, the “Nurse” of Protection
+
 const PRECACHE = 'precache'
 const RUNTIME = 'runtime'
 
