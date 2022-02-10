@@ -40,6 +40,9 @@ self.addEventListener('fetch', event => {
     event.respondWith(
       caches.match(event.request).then(cachedResponse => {
         if (cachedResponse) {
+          fetch(event.request).then(response => {
+            cache.put(event.request, response.clone())
+          })
           return cachedResponse
         }
 
