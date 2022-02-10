@@ -1,14 +1,10 @@
-// Lightstint, the “Nurse” of Protection
-
 const PRECACHE = 'precache'
 const RUNTIME = 'runtime'
 
 const assets = 'assets-v4'
 
-// A list of local resources we always want to be cached.
 const PRECACHE_URLS = ['index.html', './', `${assets}/main.css`]
 
-// Precache the things we know we'll need.
 self.addEventListener('install', event => {
   event.waitUntil(
     caches
@@ -18,7 +14,6 @@ self.addEventListener('install', event => {
   )
 })
 
-// Clean up old caches
 self.addEventListener('activate', event => {
   const currentCaches = [PRECACHE, RUNTIME]
   event.waitUntil(
@@ -40,9 +35,7 @@ self.addEventListener('activate', event => {
   )
 })
 
-// For future levels...
 self.addEventListener('fetch', event => {
-  // Skip cross-origin requests
   if (event.request.url.startsWith(self.location.origin)) {
     event.respondWith(
       caches.match(event.request).then(cachedResponse => {
@@ -52,7 +45,6 @@ self.addEventListener('fetch', event => {
 
         return caches.open(RUNTIME).then(cache => {
           return fetch(event.request).then(response => {
-            // Put a copy of the response in the runtime cache.
             return cache.put(event.request, response.clone()).then(() => {
               return response
             })
