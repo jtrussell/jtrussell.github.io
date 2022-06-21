@@ -3,7 +3,12 @@ const RUNTIME = 'runtime'
 
 const assets = 'assets-v4'
 
-const PRECACHE_URLS = ['index.html', './', `${assets}/main.css`]
+const PRECACHE_URLS = [
+  'index.html',
+  './',
+  `${assets}/main.css`,
+  'zyx/index.html'
+]
 
 self.addEventListener('install', event => {
   event.waitUntil(
