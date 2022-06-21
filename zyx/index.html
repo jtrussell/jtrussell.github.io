@@ -1,0 +1,138 @@
+<html>
+  <head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css" integrity="sha512-EZLkOqwILORob+p0BXZc+Vm3RgJBOe1Iq/0fiI7r/wJgzOFZMlsqTa29UEl6v6U6gsV4uIpsNZoV32YZqrCRCQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <style type="text/css" media="all">
+      body, html {
+        background-color: #efefef;
+      }
+
+      main.container {
+        margin-top: 60px;
+        text-align: center;
+      }
+
+      input.char {
+        width: 3em;
+        height: 3em;
+        font-size: 1.2em;
+        text-align: center;
+      }
+
+      .inputs.nope .char {
+        background-color: #f8d7da;
+        border-color: #f5c2c7;
+      }
+      .inputs.nope .char:focus {
+        border-color: #842029;
+      }
+
+      .inputs.yep .char {
+        background-color: #d1e7dd;
+        border-color: #badbcc;
+      }
+      .inputs.yep .char:focus {
+        border-color: #0f5132;
+      }
+
+      .output {
+        white-space: pre-wrap;
+      }
+
+      .wait-for-js {
+        display: none;
+      }
+    </style>
+  </head>
+  <body>
+    <main class="container wait-for-js">
+      <div class="inputs">
+        <input class="char" type="text" />
+        <input class="char" type="text" />
+        -
+        <input class="char" type="text" />
+        <input class="char" type="text" />
+        <input class="char" type="text" />
+        <input class="char" type="text" />
+        <input class="char" type="text" />
+        <input class="char" type="text" />
+      </div>
+      <div class="output">
+        
+      </div>
+    </main>
+  </body>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js" integrity="sha512-uto9mlQzrs59VwILcLiRYeLKPPbS/bT71da/OEBYEwcdNUk8jYIy+D176RYoop1Da+f9mvkYrmj5MCLZWEtQuA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script type="text/javascript" harset="utf-8">
+    function nope (theMessage) {
+      $('.inputs').removeClass('yep')
+      $('.inputs').addClass('nope').effect('shake')
+      $('.output').html(theMessage)
+    }
+
+    function yep (theMessage) {
+      $('.inputs').removeClass('nope')
+      $('.inputs').addClass('yep')
+      $('.output').html(theMessage)
+      $('.inputs .char').eq(0).effect('bounce', 'slow')
+      setTimeout(function () { $('.inputs .char').eq(1).effect('bounce', 'slow') }, 50)
+      setTimeout(function () { $('.inputs .char').eq(2).effect('bounce', 'slow') }, 100)
+      setTimeout(function () { $('.inputs .char').eq(3).effect('bounce', 'slow') }, 150)
+      setTimeout(function () { $('.inputs .char').eq(4).effect('bounce', 'slow') }, 200)
+      setTimeout(function () { $('.inputs .char').eq(5).effect('bounce', 'slow') }, 250)
+      setTimeout(function () { $('.inputs .char').eq(6).effect('bounce', 'slow') }, 300)
+      setTimeout(function () { $('.inputs .char').eq(7).effect('bounce', 'slow') }, 350)
+    }
+
+    function clean () {
+      $('.inputs').removeClass('nope')
+      $('.inputs').removeClass('yep')
+      $('.output').html('')
+    }
+    function checkAnswer () {
+      const theAnswer = $('.inputs .char').map(function () {
+        return $(this).val()
+      }).toArray().join('')
+      if (theAnswer.length < 8) {
+        clean()
+        return
+      }
+      fetch(`https://mktpnwsujp5myjlsmfdkc27phq0iohwp.lambda-url.us-east-1.on.aws/?zyx=${theAnswer}`)
+        .then(function (response) {
+          if (response.ok) {
+            return response.json()
+          } else {
+            return nope('Hmmm... something went wrong')
+          }
+        })
+        .then(function (json) {
+          if (json.success) {
+            return yep(json.message)
+          } else {
+            return nope(json.message)
+          }
+        })
+        .catch(function (reason) {
+          console.error(reason)
+          return nope('Oh dear... something went REALLY wrong! You should probably find a programmer person and let them know')
+        })
+    }
+
+    $(document).ready(function () {
+      $('.wait-for-js').fadeIn(1000)
+        $('.inputs').on('keyup', '.char', function (keyupEvent) {
+          const $el = $(this)
+          const theVal = $el.val().slice(-1).toUpperCase()
+          $el.val(theVal)
+          if (theVal.length) {
+            $el.next('.char').focus()
+          } else if (keyupEvent.key === 'Backspace') {
+            $el.prev('.char').focus()
+          }
+          checkAnswer()
+        })
+      $('.inputs .char').first().focus()
+    })
+  </script>
+</html>
