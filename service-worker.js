@@ -1,5 +1,5 @@
-const PRECACHE = 'precache-v1.2'
-const RUNTIME = 'runtime-v1.2'
+const PRECACHE = 'precache-v1.4'
+const RUNTIME = 'runtime-v1.4'
 
 const assets = 'assets-v4'
 
@@ -20,7 +20,7 @@ self.addEventListener('install', (event) => {
 })
 
 self.addEventListener('activate', (event) => {
-  const currentCaches = [PRECACHE, RUNTIME]
+  const currentCaches = [RUNTIME, PRECACHE]
   event.waitUntil(
     caches
       .keys()
@@ -43,24 +43,15 @@ self.addEventListener('activate', (event) => {
 self.addEventListener('fetch', (event) => {
   if (event.request.url.startsWith(self.location.origin)) {
     event.respondWith(
-      caches.match(event.request).then((cachedResponse) => {
-        if (cachedResponse) {
-          caches.open(RUNTIME).then((cache) => {
-            fetch(event.request).then((response) => {
-              cache.put(event.request, response.clone())
-            })
-          })
-          return cachedResponse
-        }
-
-        return caches.open(RUNTIME).then((cache) => {
-          return fetch(event.request).then((response) => {
-            return cache.put(event.request, response.clone()).then(() => {
-              return response
-            })
-          })
+      fetch(event.request)
+        .then((response) => {
+          return caches
+            .open(RUNTIME)
+            .then((cache) =>
+              cache.put(event.request, response.clone()).then(() => response)
+            )
         })
-      })
+        .catch(() => caches.match(event.request))
     )
   }
 })
