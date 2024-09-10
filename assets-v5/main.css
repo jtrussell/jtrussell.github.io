@@ -2,6 +2,9 @@
 :root {
   --color-accent: #5252c3;
   --color-text: #323232;
+  --color-lines: #ccc;
+  --color-light-grey: #f9f9f9;
+  --color-text-grey: #444;
   --width-slim: 40rem;
 }
 
@@ -17,6 +20,10 @@ body {
   padding: 0 1rem;
 }
 
+strong {
+  font-variant: small-caps;
+}
+
 /* For small displays, let's not play games */
 
 @media (max-width: 1200px) {
@@ -30,8 +37,6 @@ body {
     color: var(--color-accent);
   }
 }
-
-/* Level 1, Enter the dungeon! */
 
 .level1 {
   max-width: var(--width-slim);
@@ -65,4 +70,42 @@ body {
 .level1 a:hover:after,
 .level1 a:focus:after {
   width: 100%;
+}
+
+.level1 h1 {
+  color: #444;
+  font-variant: small-caps;
+}
+
+.level1 [role="doc-subtitle"] {
+  font-size: 1.4em;;
+  margin-block-start: -.67em;
+  margin-block-end: 0.67em;
+}
+
+.level1 .projects {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.level1 .projects > * {
+  flex-basis: 100%;
+  flex-grow: 1;
+}
+
+.chips-list {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+  display: flex;
+  gap: 5px;
+}
+
+.chips-list li {
+  padding: 5px 10px;
+  border: 1px solid var(--color-lines);
+  border-radius: 2px;
+  background-color: var(--color-light-grey);
+  color: var(--color-text-grey);
 }
