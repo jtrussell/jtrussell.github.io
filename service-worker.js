@@ -1,7 +1,7 @@
-const PRECACHE = 'precache-v1.6'
-const RUNTIME = 'runtime-v1.6'
+const PRECACHE = 'precache-v2.1'
+const RUNTIME = 'runtime-v2.1'
 
-const assets = 'assets-v5'
+const assets = 'assets-v6'
 
 const PRECACHE_URLS = [
   'index.html',
@@ -46,13 +46,32 @@ self.addEventListener('fetch', (event) => {
     event.respondWith(
       fetch(event.request)
         .then((response) => {
-          return caches
-            .open(RUNTIME)
-            .then((cache) =>
-              cache.put(event.request, response.clone()).then(() => response)
-            )
+          if (response && response.status === 200 && response.type === 'basic') {
+            return caches
+              .open(RUNTIME)
+              .then((cache) =>
+                cache.put(event.request, response.clone()).then(() => response)
+              )
+          }
+          return response
         })
-        .catch(() => caches.match(event.request))
+        .catch(() => {
+          return caches.match(event.request).then((cachedResponse) => {
+            if (cachedResponse) {
+              return cachedResponse
+            }
+            
+            if (event.request.destination === 'document') {
+              return caches.match('index.html')
+            }
+            
+            return new Response('Offline content not available', {
+              status: 503,
+              statusText: 'Service Unavailable',
+              headers: { 'Content-Type': 'text/plain' }
+            })
+          })
+        })
     )
   }
 })
