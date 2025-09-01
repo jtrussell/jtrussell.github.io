@@ -56,5 +56,21 @@
     }
   });
   
+  function handleScroll() {
+    if (window.scrollY === 0) {
+      themeToggle.classList.remove('theme-toggle--hidden');
+    } else {
+      themeToggle.classList.add('theme-toggle--hidden');
+    }
+  }
+  
+  let scrollTimeout;
+  function debouncedScrollHandler() {
+    clearTimeout(scrollTimeout);
+    scrollTimeout = setTimeout(handleScroll, 10);
+  }
+  
+  window.addEventListener('scroll', debouncedScrollHandler);
+  
   initializeTheme();
 })();

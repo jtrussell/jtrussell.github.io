@@ -149,10 +149,16 @@ strong {
   cursor: pointer;
   font-size: 0.875rem;
   color: var(--color-text);
-  transition: all 0.3s ease;
+  transition: all 0.3s ease, transform 0.3s ease, opacity 0.3s ease;
   z-index: 1000;
   min-width: 4rem;
   text-align: center;
+}
+
+.theme-toggle--hidden {
+  transform: translateY(-100%);
+  opacity: 0;
+  pointer-events: none;
 }
 
 .theme-toggle:hover {
