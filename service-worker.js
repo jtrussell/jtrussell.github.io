@@ -7,6 +7,7 @@ const PRECACHE_URLS = [
   'index.html',
   './',
   `${assets}/main.css`,
+  `${assets}/theme.js`,
   'zyx/index.html',
 ]
 
