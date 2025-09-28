@@ -13,10 +13,30 @@
     localStorage.setItem('theme', theme)
   }
 
+  function loadThemeCSS(theme) {
+    // Remove existing theme CSS
+    const existingThemeCSS = document.querySelector('link[data-theme-css]')
+    if (existingThemeCSS) {
+      existingThemeCSS.remove()
+    }
+
+    // Load new theme CSS
+    const link = document.createElement('link')
+    link.rel = 'stylesheet'
+    link.href = `assets-v7/themes/${theme}.css`
+    link.setAttribute('data-theme-css', theme)
+    document.head.appendChild(link)
+  }
+
   function applyTheme(theme) {
-    if (theme === 'auto') {
-      html.removeAttribute('data-theme')
-    } else {
+    // Remove any existing data-theme attribute
+    html.removeAttribute('data-theme')
+
+    // Load the appropriate theme CSS
+    loadThemeCSS(theme)
+
+    // Set data-theme attribute for non-auto themes
+    if (theme !== 'auto') {
       html.setAttribute('data-theme', theme)
     }
   }

@@ -8,6 +8,12 @@ const PRECACHE_URLS = [
   './',
   `${assets}/main.css`,
   `${assets}/theme-switcher.js`,
+  `${assets}/themes/auto.css`,
+  `${assets}/themes/light.css`,
+  `${assets}/themes/dark.css`,
+  `${assets}/themes/modern.css`,
+  `${assets}/themes/retro.css`,
+  `${assets}/themes/funky.css`,
   'zyx/index.html',
 ]
 

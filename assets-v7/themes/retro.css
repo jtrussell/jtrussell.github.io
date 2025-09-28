@@ -1,0 +1,99 @@
+/* Retro Theme - Warm and Organic */
+:root {
+  --width-slim: 38rem;
+  --color-accent: #ff6b35;
+  --color-accent-hover: #e55a31;
+  --color-text: #2c1810;
+  --color-text-muted: #a0826d;
+  --color-text-secondary: #5d4037;
+  --color-lines: #d7ccc8;
+  --color-light-grey: #fff8e1;
+  --color-background: #fefefe;
+}
+
+.card {
+  border-radius: 16px;
+  box-shadow: 0 3px 12px rgba(255, 107, 53, 0.1);
+  border: 2px solid var(--color-lines);
+  position: relative;
+}
+
+.card::before {
+  content: '';
+  position: absolute;
+  top: -1px;
+  left: -1px;
+  right: -1px;
+  bottom: -1px;
+  background: linear-gradient(45deg, var(--color-accent), transparent, var(--color-accent));
+  border-radius: 16px;
+  z-index: -1;
+  opacity: 0.1;
+}
+
+.card--hero {
+  background: radial-gradient(circle at 20% 20%, var(--color-light-grey) 0%, var(--color-background) 70%);
+  border-color: var(--color-accent);
+}
+
+.card--hero ul.resources:before {
+  content: "~ Resources ~";
+  display: block;
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+  text-transform: none;
+  font-size: 0.8rem;
+  color: var(--color-accent);
+  font-style: italic;
+}
+
+.card--hero ul.resources {
+  list-style: none;
+  padding: 0;
+  margin: 1rem 0 0 0;
+  text-align: center;
+}
+
+.card--hero ul.resources li {
+  display: inline-block;
+}
+
+.card--hero ul.resources li + li:before {
+  content: "★";
+  display: inline-block;
+  margin: 0 0.4rem;
+  color: var(--color-accent);
+  font-size: 0.8rem;
+}
+
+.project-card, .interest-item {
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(255, 107, 53, 0.15);
+  border: 1px solid var(--color-lines);
+  position: relative;
+  overflow: hidden;
+}
+
+.project-card::after, .interest-item::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: linear-gradient(90deg, var(--color-accent), transparent);
+}
+
+.project-card:hover, .interest-item:hover {
+  transform: translateY(-2px) rotate(0.5deg);
+  box-shadow: 0 6px 16px rgba(255, 107, 53, 0.2);
+}
+
+h1, h2, h3 {
+  font-weight: 500;
+  text-shadow: 0 1px 2px rgba(255, 107, 53, 0.1);
+}
+
+strong {
+  color: var(--color-accent);
+}

@@ -1,0 +1,66 @@
+/* Dark Theme - Sleek and Modern */
+:root {
+  --width-slim: 45rem;
+  --border-radius: 4px;
+
+  --color-accent: #7b7bff;
+  --color-accent-hover: #6666ff;
+  --color-text: #e0e0e0;
+  --color-text-muted: #666;
+  --color-text-secondary: #b0b0b0;
+  --color-lines: #404040;
+  --color-light-grey: #2a2a2a;
+  --color-background: #1a1a1a;
+}
+
+.card {
+  border-radius: calc(var(--border-radius) * 1.5);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  border: 1px solid var(--color-lines);
+}
+
+.card--hero {
+  background: linear-gradient(135deg, var(--color-background) 0%, #252525 100%);
+  border: 1px solid #333;
+}
+
+.project-card, .interest-item {
+  border-radius: calc(var(--border-radius) * 1.2);
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.4);
+  border: 1px solid #333;
+}
+
+.card--hero ul.resources:before {
+  content: "[ RESOURCES ]";
+  display: block;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+  text-transform: uppercase;
+  font-size: 0.7rem;
+  color: var(--color-accent);
+  letter-spacing: 1px;
+}
+
+.card--hero ul.resources {
+  list-style: none;
+  padding: 0;
+  margin: 1rem 0 0 0;
+  text-align: center;
+}
+
+.card--hero ul.resources li {
+  display: inline-block;
+}
+
+.card--hero ul.resources li + li:before {
+  content: "•";
+  display: inline-block;
+  margin: 0 0.25rem;
+  color: var(--color-text-secondary);
+  text-shadow: 0 0 4px var(--color-accent);
+}
+
+.project-card:hover, .interest-item:hover {
+  box-shadow: 0 6px 16px rgba(123, 123, 255, 0.2);
+  border-color: var(--color-accent);
+}

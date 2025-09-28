@@ -1,0 +1,53 @@
+/* Light Theme - Clean and Professional */
+:root {
+  --width-slim: 42rem;
+  --color-accent: #5252c3;
+  --color-accent-hover: #4141a8;
+  --color-text: #323232;
+  --color-text-secondary: #444;
+  --color-lines: #ccc;
+  --color-light-grey: #f9f9f9;
+  --color-background: #ffffff;
+}
+
+.card {
+  border-radius: var(--border-radius);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.card--hero {
+  background: linear-gradient(135deg, var(--color-background) 0%, var(--color-light-grey) 100%);
+}
+
+.card--hero ul.resources:before {
+  content: "Resources";
+  display: block;
+  font-weight: bold;
+  margin-bottom: 0.25rem;
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  color: var(--color-text-muted);
+}
+
+.card--hero ul.resources {
+  list-style: none;
+  padding: 0;
+  margin: 1rem 0 0 0;
+  text-align: center;
+}
+
+.card--hero ul.resources li {
+  display: inline-block;
+}
+
+.card--hero ul.resources li + li:before {
+  content: "•";
+  display: inline-block;
+  margin: 0 0.25rem;
+  color: var(--color-text-secondary);
+}
+
+.project-card, .interest-item {
+  border-radius: var(--border-radius);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
