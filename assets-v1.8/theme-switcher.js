@@ -23,7 +23,7 @@
     // Load new theme CSS
     const link = document.createElement('link')
     link.rel = 'stylesheet'
-    link.href = `assets-v7/themes/${theme}.css`
+    link.href = `assets-v1.8/themes/${theme}.css`
     link.setAttribute('data-theme-css', theme)
     document.head.appendChild(link)
   }

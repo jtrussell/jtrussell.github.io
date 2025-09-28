@@ -1,7 +1,7 @@
 const PRECACHE = 'precache-v2.1'
 const RUNTIME = 'runtime-v2.1'
 
-const assets = 'assets-v7'
+const assets = 'assets-v1.8'
 
 const PRECACHE_URLS = [
   'index.html',
