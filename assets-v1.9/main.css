@@ -12,6 +12,8 @@
   --color-lines: #ccc;
   --color-light-grey: #f9f9f9;
   --color-background: #ffffff;
+
+  --shadow-height-one: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
 
@@ -21,11 +23,14 @@ body {
   color: var(--color-text);
   background-color: var(--color-background);
   font-family: "Helvetica";
-  -webkit-transition: max-width 0.7s ease, background-color 0.3s ease, color 0.3s ease;
-  -moz-transition: max-width 0.7s ease, background-color 0.3s ease, color 0.3s ease;
-  -ms-transition: max-width 0.7s ease, background-color 0.3s ease, color 0.3s ease;
-  transition: max-width 0.7s ease, background-color 0.3s ease, color 0.3s ease;
   padding: 2rem 1rem;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+html[data-theme-ready="true"] body {
+  opacity: 1;
+  transition: opacity 0.3s ease, max-width 0.7s ease, background-color 0.3s ease, color 0.3s ease;
 }
 
 strong {
@@ -93,6 +98,14 @@ strong {
 
 /* Theme toggle */
 #theme-switcher {
+  position: fixed;
+  bottom: 1rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1000;
+  transition: all 0.3s ease, transform 0.3s ease, opacity 0.3s ease;
+  max-height: 3rem;
+  overflow: hidden;
   background: var(--color-light-grey);
   border: 1px solid var(--color-lines);
   border-radius: var(--border-radius);
@@ -104,6 +117,18 @@ strong {
   padding: 0;
   min-width: 4rem;
   text-align: center;
+  box-shadow: var(--shadow-height-one);
+}
+
+#theme-switcher.theme-switcher--expanded {
+  max-height: none;
+  overflow: visible;
+}
+
+#theme-switcher.theme-switcher--hidden {
+  transform: translateX(-50%) translateY(100%);
+  opacity: 0;
+  pointer-events: none;
 }
 
 #theme-switcher li {
@@ -142,6 +167,7 @@ strong {
 
 @media (max-width: 768px) {
   #theme-switcher {
+    bottom: 1rem;
     font-size: 0.8rem;
     min-width: 3.5rem;
   }
@@ -202,7 +228,7 @@ strong {
 
 .project-card:hover {
   transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  box-shadow: var(--shadow-height-one);
 }
 
 .project-card h3 {
@@ -234,7 +260,7 @@ strong {
 
 .interest-item:hover {
   transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  box-shadow: var(--shadow-height-one);
 }
 
 /* Mobile optimizations */

@@ -14,28 +14,26 @@
   }
 
   function loadThemeCSS(theme) {
-    // Remove existing theme CSS
     const existingThemeCSS = document.querySelector('link[data-theme-css]')
     if (existingThemeCSS) {
       existingThemeCSS.remove()
     }
 
-    // Load new theme CSS
     const link = document.createElement('link')
     link.rel = 'stylesheet'
-    link.href = `assets-v1.8/themes/${theme}.css`
+    link.href = `assets-v1.9/themes/${theme}.css`
     link.setAttribute('data-theme-css', theme)
+    link.onload = () => {
+      window.setTimeout(() => {
+        html.setAttribute('data-theme-ready', 'true')
+      }, 100)
+    }
     document.head.appendChild(link)
   }
 
   function applyTheme(theme) {
-    // Remove any existing data-theme attribute
     html.removeAttribute('data-theme')
-
-    // Load the appropriate theme CSS
     loadThemeCSS(theme)
-
-    // Set data-theme attribute for non-auto themes
     if (theme !== 'auto') {
       html.setAttribute('data-theme', theme)
     }
@@ -57,16 +55,12 @@
     if (!isExpanded) return
     isExpanded = false
     themeSwitcher.classList.remove('theme-switcher--expanded')
-    themeSwitcher.style.maxHeight = '3rem'
-    themeSwitcher.style.overflow = 'hidden'
   }
 
   function expandMenu() {
     if (isExpanded) return
     isExpanded = true
     themeSwitcher.classList.add('theme-switcher--expanded')
-    themeSwitcher.style.maxHeight = 'none'
-    themeSwitcher.style.overflow = 'visible'
   }
 
   function toggleMenu() {
@@ -84,37 +78,10 @@
     collapseMenu()
   }
 
-  function applyStandardPositioning() {
-    const styles = {
-      position: 'fixed',
-      bottom: '2rem',
-      left: '50%',
-      transform: 'translateX(-50%)',
-      zIndex: '1000',
-      transition: 'all 0.3s ease, transform 0.3s ease, opacity 0.3s ease',
-      maxHeight: '3rem',
-      overflow: 'hidden',
-    }
-
-    Object.assign(themeSwitcher.style, styles)
-
-    function updateMobileStyles() {
-      if (window.innerWidth <= 768) {
-        themeSwitcher.style.bottom = '0.75rem'
-      } else {
-        themeSwitcher.style.bottom = '1rem'
-      }
-    }
-
-    updateMobileStyles()
-    window.addEventListener('resize', updateMobileStyles)
-  }
-
   function initializeTheme() {
     const storedTheme = getStoredTheme()
     applyTheme(storedTheme)
     setActiveTheme(storedTheme)
-    applyStandardPositioning()
   }
 
   function handleScroll() {
@@ -123,13 +90,9 @@
     if (shouldBeVisible !== isVisible) {
       isVisible = shouldBeVisible
       if (isVisible) {
-        themeSwitcher.style.transform = 'translateX(-50%)'
-        themeSwitcher.style.opacity = '1'
-        themeSwitcher.style.pointerEvents = 'auto'
+        themeSwitcher.classList.remove('theme-switcher--hidden')
       } else {
-        themeSwitcher.style.transform = 'translateX(-50%) translateY(100%)'
-        themeSwitcher.style.opacity = '0'
-        themeSwitcher.style.pointerEvents = 'none'
+        themeSwitcher.classList.add('theme-switcher--hidden')
         collapseMenu()
       }
     }
