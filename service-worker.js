@@ -1,5 +1,5 @@
-const PRECACHE = 'precache-v2.2'
-const RUNTIME = 'runtime-v2.2'
+const PRECACHE = 'precache-v2.3'
+const RUNTIME = 'runtime-v2.3'
 
 const assets = 'assets-v1.9'
 
@@ -7,13 +7,7 @@ const PRECACHE_URLS = [
   'index.html',
   './',
   `${assets}/main.css`,
-  `${assets}/theme-switcher.js`,
-  `${assets}/themes/auto.css`,
-  `${assets}/themes/light.css`,
-  `${assets}/themes/dark.css`,
-  `${assets}/themes/modern.css`,
-  `${assets}/themes/retro.css`,
-  `${assets}/themes/funky.css`,
+  `${assets}/headshot.jpg`,
   'zyx/index.html',
 ]
 

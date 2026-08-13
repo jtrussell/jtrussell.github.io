@@ -1,5 +1,5 @@
-<!DOCTYPE html>
-<html lang="en" data-theme-ready="false">
+<!doctype html>
+<html lang="en">
   <!--
 
     :wave:
@@ -24,26 +24,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content="The personal website of Justin Russell" />
     <link rel="stylesheet" href="assets-v1.9/main.css" />
-    <noscript>
-      <style>
-        body {
-          opacity: 1 !important;
-        }
-      </style>
-    </noscript>
   </head>
-  <body class="level1">
-    <ul id="theme-switcher" aria-label="Theme switcher">
-      <li data-theme="auto" class="active">💻 Auto</li>
-      <li data-theme="light">☀️ Light</li>
-      <li data-theme="dark">🌙 Dark</li>
-      <li data-theme="modern">🎯 Modern</li>
-      <li data-theme="retro">📼 Retro</li>
-      <li data-theme="funky">⚡ Funky</li>
-    </ul>
-
+  <body>
     <div class="stack container">
       <div class="card card--hero">
+        <img
+          class="headshot"
+          src="assets-v1.9/headshot.jpg"
+          alt="Justin Russell"
+          width="140"
+          height="140"
+        />
         <h1>Justin Russell</h1>
         <div role="doc-subtitle">Full Stack Engineer, Technology Leader</div>
         <p>
@@ -88,21 +79,21 @@
       </div>
       <div class="card">
         <h2>Interests</h2>
-        <p>A few selections, feel free to ask for more!</p>
+        <p>Just a few selections!</p>
 
         <div class="interests-grid">
           <div class="interest-item">
-            <strong>Squash ⚫</strong> - The racquet sport. Justin can be found
+            <strong>Squash</strong> - The racquet sport. Justin can be found
             regularly on court at Portland Community Squash.
           </div>
 
           <div class="interest-item">
-            <strong>Running 🏃‍➡️</strong> - Five marathons completed with plans
-            for at least one more.
+            <strong>Running</strong> - Five marathons completed with plans for
+            at least one more.
           </div>
 
           <div class="interest-item">
-            <strong>Games 🎲</strong> - Primarily board and card games. Justin
+            <strong>Games</strong> - Primarily board and card games. Justin
             started playing <em>Magic: The Gathering</em> in 1994 and is
             currently deep in the world of <em>KeyForge</em> where he co-hosts
             and produces
@@ -113,7 +104,7 @@
           </div>
 
           <div class="interest-item">
-            <strong>Hiking ⛰️</strong> - Justin has enjoyed some notable
+            <strong>Hiking</strong> - Justin has enjoyed some notable
             destination hikes, including Mount Kilimanjaro in Tanzania and the
             Inca Trail in Peru. Closer to home, he's working his way through the
             White Mountains of New Hampshire.
@@ -121,7 +112,6 @@
         </div>
       </div>
     </div>
-    <script src="assets-v1.9/theme-switcher.js"></script>
     <script type="text/javascript" charset="utf-8">
       if ('serviceWorker' in navigator) {
         navigator.serviceWorker.register('/service-worker.js')
