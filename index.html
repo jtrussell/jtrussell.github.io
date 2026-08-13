@@ -23,14 +23,14 @@
     <title>👋 Hello, World</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content="The personal website of Justin Russell" />
-    <link rel="stylesheet" href="assets-v1.9/main.css" />
+    <link rel="stylesheet" href="assets-v2.0/main.css" />
   </head>
   <body>
     <div class="stack container">
       <div class="card card--hero">
         <img
           class="headshot"
-          src="assets-v1.9/headshot.jpg"
+          src="assets-v2.0/headshot.jpg"
           alt="Justin Russell"
           width="140"
           height="140"
@@ -114,7 +114,9 @@
     </div>
     <script type="text/javascript" charset="utf-8">
       if ('serviceWorker' in navigator) {
-        navigator.serviceWorker.register('/service-worker.js')
+        navigator.serviceWorker.register('/service-worker.js', {
+          updateViaCache: 'none',
+        })
       }
     </script>
   </body>

@@ -1,7 +1,7 @@
-const PRECACHE = 'precache-v2.3'
-const RUNTIME = 'runtime-v2.3'
+const PRECACHE = 'precache-v2.4'
+const RUNTIME = 'runtime-v2.4'
 
-const assets = 'assets-v1.9'
+const assets = 'assets-v2.0'
 
 const PRECACHE_URLS = [
   'index.html',
@@ -15,7 +15,11 @@ self.addEventListener('install', (event) => {
   event.waitUntil(
     caches
       .open(PRECACHE)
-      .then((cache) => cache.addAll(PRECACHE_URLS))
+      .then((cache) =>
+        cache.addAll(
+          PRECACHE_URLS.map((url) => new Request(url, { cache: 'reload' }))
+        )
+      )
       .then(self.skipWaiting())
   )
 })
